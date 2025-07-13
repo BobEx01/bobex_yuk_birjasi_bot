@@ -1,4 +1,4 @@
-rom aiogram import types, Dispatcher
+from aiogram import types, Dispatcher
 
 async def confirm(message: types.Message):
     await message.answer("Tasdiq funksiyasi ishlamoqda...")
