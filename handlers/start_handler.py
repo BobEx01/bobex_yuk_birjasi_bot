@@ -1,5 +1,7 @@
-from aiogram import types
-def register(dp):
-    @dp.message_handler(commands=["start"])
-    async def send_welcome(msg: types.Message):
-        await msg.answer("Assalomu alaykum! BobEx botiga xush kelibsiz.")
+from aiogram import types, Dispatcher
+
+async def cmd_start(message: types.Message):
+    await message.answer("Assalomu alaykum! BobEx botiga xush kelibsiz.")
+
+def register_handlers(dp: Dispatcher):
+    dp.register_message_handler(cmd_start, commands=['start'])
