@@ -1,19 +1,17 @@
 from aiogram import executor
 from create_bot import dp
-from handlers import (
-    start_handler,
-    add_yuk_handler,
-    balans_handler,
-    admin_handler,
-    confirm_handler
-)
+from handlers import start_handler, add_yuk_handler, balans_handler, admin_handler, confirm_handler
 
-# Barcha handlerlarni registratsiya qilamiz
-start_handler.register_start_handler(dp)
-add_yuk_handler.register_add_yuk_handler(dp)
-balans_handler.register_balans_handler(dp)
-admin_handler.register_admin_handler(dp)
-confirm_handler.register_confirm_handler(dp)
+# Handlarni ro'yxatdan o'tkazamiz
+start_handler.register_handlers(dp)
+add_yuk_handler.register_handlers(dp)
+balans_handler.register_handlers(dp)
+admin_handler.register_handlers(dp)
+confirm_handler.register_handlers(dp)
 
-if name == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+async def on_startup(dispatcher):
+    print("Bot ishga tushdi!")
+
+if name == "__main__":
+    from aiogram import executor
+    executor.start_polling(dp, on_startup=on_startup)
