@@ -1,16 +1,23 @@
-from aiogram import Bot, Dispatcher, types, executor
-from handlers import start_handler, add_yuk_handler, confirm_handler, balance_handler
-import os
+from aiogram import Bot, Dispatcher, executor
 from dotenv import load_dotenv
+import os
+import logging
+
+from handlers import start_handler, add_yuk_handler, balans_handler, admin_handler, confirm_handler
 
 load_dotenv()
-bot = Bot(token=os.getenv("BOT_TOKEN"))
+API_TOKEN = os.getenv("BOT_TOKEN")
+
+logging.basicConfig(level=logging.INFO)
+
+bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
-start_handler.register(dp)
-add_yuk_handler.register(dp)
-confirm_handler.register(dp)
-balance_handler.register(dp)
+start_handler.register_handlers(dp)
+add_yuk_handler.register_handlers(dp)
+balans_handler.register_handlers(dp)
+admin_handler.register_handlers(dp)
+confirm_handler.register_handlers(dp)
 
-if __name__ == "__main__":
+if name == '__main__':
     executor.start_polling(dp, skip_updates=True)
